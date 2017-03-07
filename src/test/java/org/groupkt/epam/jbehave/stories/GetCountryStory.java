@@ -1,17 +1,15 @@
 package org.groupkt.epam.jbehave.stories;
 
-import org.groupkt.epam.jbehave.GetCountry;
 import org.groupkt.epam.jbehave.steps.GetCountrySteps;
 
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
 import org.jbehave.core.embedder.Embedder;
 import org.jbehave.core.embedder.EmbedderControls;
-import org.jbehave.core.embedder.MetaFilter;
+import org.jbehave.core.failures.FailingUponPendingStep;
 import org.jbehave.core.io.CodeLocations;
 import org.jbehave.core.io.LoadFromClasspath;
 
-import org.jbehave.core.model.Meta;
 import org.jbehave.core.parsers.RegexPrefixCapturingPatternParser;
 import org.jbehave.core.reporters.CrossReference;
 import org.jbehave.core.reporters.StoryReporterBuilder;
@@ -36,6 +34,7 @@ public class GetCountryStory extends Embedder {
         public Configuration configuration() {
             Class<? extends GetCountryStory> embedderClass = this.getClass();
             return new MostUsefulConfiguration()
+                    .usePendingStepStrategy(new FailingUponPendingStep())
                     .useParameterControls(new ParameterControls().useDelimiterNamedParameters(true))
                     .useStoryLoader(new LoadFromClasspath(embedderClass.getClassLoader()))
                     .useStoryReporterBuilder(new StoryReporterBuilder()

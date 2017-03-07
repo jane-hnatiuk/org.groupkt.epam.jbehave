@@ -2,7 +2,6 @@
 package org.groupkt.epam.jbehave.steps;
 
 import org.groupkt.epam.jbehave.GetCountry;
-import org.jbehave.core.annotations.Aliases;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;

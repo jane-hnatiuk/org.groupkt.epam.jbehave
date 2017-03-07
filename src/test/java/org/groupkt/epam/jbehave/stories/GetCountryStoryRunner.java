@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 
 public class GetCountryStoryRunner {
