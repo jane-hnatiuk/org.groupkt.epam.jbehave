@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <jbehave.version>3.8</jbehave.version>
+        <jbehave.version>4.1</jbehave.version>
         <junit.version>4.11</junit.version>
         <failsafe.and.surefire.version>2.16</failsafe.and.surefire.version>
     </properties>
@@ -46,8 +46,6 @@
             <artifactId>jbehave-junit-runner</artifactId>
             <version>1.2.0</version>
         </dependency>
-
-
 
         <dependency>
             <groupId>com.google.code.gson</groupId>

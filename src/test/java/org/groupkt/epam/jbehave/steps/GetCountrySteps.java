@@ -1,3 +1,4 @@
+
 package org.groupkt.epam.jbehave.steps;
 
 import org.groupkt.epam.jbehave.GetCountry;
@@ -43,32 +44,32 @@ public class GetCountrySteps extends GetCountry {
         connection.disconnect();
     }
 
-    @When("^user do request for all countries$")
+    @When("user do request for all countries")
     public void userDoRequestForAllCountries() throws IOException {
 
         connection = initHttpConnection(ALL, searchValue);
     }
 
-    @Then("^server return response with code (\\d+)$")
+    @Then("server return response with code $")
     public void serverReturnResponseWithCode(int arg0) throws IOException {
 
         Assert.assertEquals("Incorrect response code", arg0, connection.getResponseCode());
     }
 
-    @Aliases(values = "^response contains list of all countries$")
+    @Then("response contains list of all countries")
     public void responseContainsListOfAllCountries() throws IOException {
 
         resultList = getResultsList(connection);
         Assert.assertEquals("", COUNTRIES_TOTAL_COUNT, resultList.size());
     }
 
-    @When("^user do request for all countries using uppercase ALL$")
+    @When("user do request for all countries using uppercase ALL")
     public void userDoRequestForAllCountriesUsingUppercaseALL() {
 
         connection = initHttpConnection(ALL.toUpperCase(), searchValue);
     }
 
-    @Given("^user has all countries info and pick some (\\d+) character API call$")
+    @Given("user has all countries info and pick some $ character API call")
     public void userHasAllCountriesInfoAndPickSomeCharacterApiCall(int isoCodeType) {
 
         connection = initHttpConnection(ALL, searchValue);
@@ -77,21 +78,21 @@ public class GetCountrySteps extends GetCountry {
         searchValue = getCountryParameterValueFromCountryInfo(countryInfo, searchParameter);
     }
 
-    @When("^user do country info request by (\\d+) character API call$")
+    @When("user do country info request by $ character API call")
     public void userDoCountryInfoRequestByCharacterApiCall(int isoCodeType) {
         String urlParameter = (isoCodeType == 2 ? ISO2CODE : ISO3CODE);
         connection = initHttpConnection(urlParameter, searchValue);
 
     }
 
-    @Aliases(values = "^response contains correct country info$")
+    @Then("response contains correct country info")
     public void responseContainsCorrectCountryInfo() {
 
         Assert.assertEquals("Response contains incorrect country info", countryInfo, getSingleResult(connection));
 
     }
 
-    @When("^user do country info request using (\\d+) character API call with not existed code$")
+    @When("user do country info request using $ character API call with not existed code")
     public void userDoCountryInfoRequestUsingCharacterAPICallWithNotExistedCode(int isoCodeType) {
 
         String urlParameter = (isoCodeType == 2 ? ISO2CODE : ISO3CODE);
@@ -99,12 +100,12 @@ public class GetCountrySteps extends GetCountry {
         connection = initHttpConnection(urlParameter, notExistedCode);
     }
 
-    @Aliases(values = "^response message like \"([^\"]*)\"$")
+    @Then("response message No Matching Country Found")
     public void responseMessageLike(String message) {
         Assert.assertTrue("Incorrect message", getMessagesList(connection).toString().contains(message.replace("...", "")));
     }
 
-    @When("^user do country info request by (\\d+) character API call without code value$")
+    @When("user do country info request by $ character API call without code value")
     public void userDoCountryInfoRequestByCharacterAPICallWithoutCodeValue(int isoCodeType) {
 
         String urlParameter = (isoCodeType == 2 ? ISO2CODE : ISO3CODE);
@@ -112,18 +113,18 @@ public class GetCountrySteps extends GetCountry {
         connection = initHttpConnection(urlParameter, notExistedCode);
     }
 
-    @When("^user do search request with search parameter$")
+    @When("user do search request with search parameter")
     public void userDoSearchRequestWithSearchParameter() {
         searchValue = "UA";
         connection = initHttpConnectionForSearch(BASE_SEARCH_URL, searchValue);
     }
 
-    @Aliases(values = "^list of search results$")
+    @Then("list of search results")
     public void listOfSearchResults() {
         Assert.assertTrue("Search result should not be empty.", getResultsList(connection).size() > 0);
     }
 
-    @When("^user do search request without required \"([^\"]*)\" key$")
+    @When("user do search request without required text key")
     public void userDoSearchRequestWithoutRequiredKey(String propertyKey) throws Throwable {
 
         searchValue = "UA";
